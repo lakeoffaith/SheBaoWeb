@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+    default-lazy-init="true">
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
+		<property name="securityManager" ref="securityManager"/>  
+		 <property name="loginUrl" value="/login"/>
+        <property name="filterChainDefinitions">
+            <value>
+                /admin/**=authc
+                /login=anon
+                /apiLogin/*=anon
+                /api/**=phone
+                
+            </value>
+        </property>
+        <property name="filters">
+        	<map>
+        		<entry key="phone">
+        			<bean class="com.shebao.minSys.shiro.filter.MobileTokenAuthentication">
+        			</bean>
+        			
+        		</entry>
+        		<entry key="authc">
+					<!-- <bean class="com.pets.shiro.filter.LoginAuthenticationFilter">
+					</bean> -->
+					<bean class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
+					</bean>
+				</entry>
+        	</map>
+        </property>
+	</bean>
+    <!-- 定义Shiro安全管理配置 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="systemAuthorizingRealm" />
+		<property name="cacheManager" ref="ehCacheManager"/>
+	</bean>
+	 <!-- 配置 shiro 的 ehcache 缓存相关,这个缓存只和 Realm 相关 -->
+    <bean id="ehCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager"></bean>
+    
+     <!-- 配置 Spring 的 EhCacheManagerFactoryBean ,须要 spring-context-support 的支持 -->
+    <bean id="ehCacheManagerFactoryBean" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache.xml"/>
+    </bean>
+
+    <!-- 配置 Spring 的 EhCacheCacheManager,须要 spring-context-support 的支持 -->
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehCacheManagerFactoryBean"/>
+    </bean>
+    
+</beans>
