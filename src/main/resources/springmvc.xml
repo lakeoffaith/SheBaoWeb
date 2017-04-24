@@ -17,4 +17,13 @@
             <property name = "prefix" value="/WEB-INF/views/"></property>
             <property name = "suffix" value = ".jsp"></property>
         </bean>
+        <mvc:interceptors>
+	  <mvc:interceptor><!--配置局部拦截器，需要满足下列路径条件-->
+	  	<mvc:mapping path="/**"/>
+	    <mvc:exclude-mapping path="/user/logout"/><!--注销-->
+	    <mvc:exclude-mapping path="/home/"/><!--在home中定义了无须登陆的方法请求，直接过滤拦截-->
+	    <bean class="com.shebao.interceptor.LoginInterceptor"/><!--自定义拦截器注册-->
+	  </mvc:interceptor>
+	  <!-- 我们可以直接在者注册自定义拦截器Bean来配置全局拦截器，会对所有请求拦截-->
+	</mvc:interceptors>
 </beans>

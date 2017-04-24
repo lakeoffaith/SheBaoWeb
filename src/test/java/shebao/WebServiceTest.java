@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ijoy.service.ILoginInfoService;
 import com.ijoy.service.IUserService;
 import com.ijoy.service.Resource;
+import com.ijoy.service.User;
 
 
 
@@ -52,8 +53,8 @@ public class WebServiceTest {
 
 		String token = loginInfoClient.loginByPhoneAndCode("123", code);
 		System.out.println("token:"+token);
-		boolean flag = loginInfoClient.checkToken(token);
-		System.out.println("登录是否成功："+flag);
+		User user= loginInfoClient.checkToken(token);
+		System.out.println("登录是否成功："+user);
 	}
 		
 }
