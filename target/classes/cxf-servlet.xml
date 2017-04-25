@@ -11,14 +11,14 @@
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
  	 <jaxws:client id="userWsClient" serviceClass="com.ijoy.service.IUserService" 
-        address="http://192.168.0.104:8080/core/service/User">
+        address="http://localhost:8889/core/service/User">
        <jaxws:outInterceptors>
        	<bean class="com.shebao.interceptor.OutInterceptor"></bean>
        </jaxws:outInterceptors>
       </jaxws:client> 
       
       <jaxws:client id="loginInfoClient" serviceClass="com.ijoy.service.ILoginInfoService" 
-        address="http://192.168.0.104:8080/core/service/LoginInfo">
+        address="http://localhost:8889/core/service/LoginInfo">
       </jaxws:client>
      
 	
