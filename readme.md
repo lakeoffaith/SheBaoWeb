@@ -7,4 +7,5 @@
   jar cf ijoycore.jar com/
   ```
 
-  ​
+* 启动 redis 服务端。
+

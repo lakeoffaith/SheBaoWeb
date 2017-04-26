@@ -30,24 +30,9 @@ public class LoginController {
 	@RequestMapping(value="/apiLogin/getTokenByPhoneAndCode",method=RequestMethod.GET)
 	public ResponseEntity<String> getTokenByPhoneAndCode(String phone,String code){
 		String result = loginInfoClient.loginByPhoneAndCode(phone, code);
-		if(!StringUtils.isEmpty(result)){
-			//存在 存放用户进session
-			/*String decode = Base64Util.decode(token);
-			String[] split = decode.split(":");
-			int userId=split[0]!=null?Integer.parseInt(split[0]):0;
-			
-			Session session = subject.getSession();
-			session.setAttribute(token, "李振纲");*/
-			//这里获取用户登录，
-			Subject subject = SecurityUtils.getSubject();
-			UsernamePasswordToken token=new UsernamePasswordToken(result,result);
-			subject.login(token);
-			
-			
-			return  new ResponseEntity<String>(result,HttpStatus.CONFLICT);
-		}
+		
 		//不存在
-		return  new ResponseEntity<String>("获取token失败",HttpStatus.CONFLICT);
+		return  new ResponseEntity<String>(result,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/api/main",method=RequestMethod.GET)
