@@ -25,7 +25,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter  {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("进入handle");
+		/*System.out.println("进入handle");
 		String requestUrl=request.getRequestURI().replaceAll(request.getContextPath(), "");
 		System.out.println("requestUrl="+requestUrl);
 		if(requestUrl.contains("login") || requestUrl.contains("Login"))return true;
@@ -44,8 +44,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter  {
 			if(requestUrl!=null && requestUrl.equals(r.getUrl())){
 				return true;
 			}
-		}
-		 return false;
+		}*/
+		 return true;
 		//return super.preHandle(request, response, handler);
 	}
 
