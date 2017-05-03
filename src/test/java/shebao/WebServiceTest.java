@@ -37,7 +37,7 @@ public class WebServiceTest {
 	
 	@Autowired
 	private ILoginInfoService loginInfoClient;
-	@Test
+	
 	public void ServiceInterceptorTest(){
         
         List<Resource> phone = userWsClient.getButtonsByUserId(1);
@@ -51,10 +51,7 @@ public class WebServiceTest {
 		String code = loginInfoClient.getCodeByCellPhone("123");
 		System.out.println("code:"+code);//6603
 
-		String token = loginInfoClient.loginByPhoneAndCode("123", code);
-		System.out.println("token:"+token);
-		User user= loginInfoClient.checkToken(token);
-		System.out.println("登录是否成功："+user);
+		
 	}
 		
 }
