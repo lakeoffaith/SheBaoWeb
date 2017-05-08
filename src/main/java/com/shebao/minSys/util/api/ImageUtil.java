@@ -22,6 +22,9 @@ public class ImageUtil {
 				byte[] bs=new byte[1024];
 				int len;
 				File sf=new File(path);
+				if(!sf.getParentFile().exists()){
+					sf.getParentFile().mkdirs();
+				}
 				os=new FileOutputStream(sf);
 				while((len=is.read(bs))!=-1){
 					os.write(bs);

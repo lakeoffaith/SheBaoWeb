@@ -2,9 +2,10 @@ package com.shebao.minSys.util.api;
 
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import com.shebao.model.Info;
+import com.shebao.model.Store;
 import com.shebao.model.Store;
 
 import okhttp3.OkHttpClient;
@@ -30,11 +31,11 @@ public class DataUtil {
 	        return response.body().string(); // 返回的是string 类型，json的mapper可以直接处理
 	}
 	  
-
+	@JsonIgnoreProperties(ignoreUnknown = true)
 	public static class Result{
 		private Boolean status;
 		private int total;
-		private List<Info> tngou;
+		private List<Store> tngou;
 		public Boolean getStatus() {
 			return status;
 		}
@@ -47,10 +48,10 @@ public class DataUtil {
 		public void setTotal(int total) {
 			this.total = total;
 		}
-		public List<Info> getTngou() {
+		public List<Store> getTngou() {
 			return tngou;
 		}
-		public void setTngou(List<Info> tngou) {
+		public void setTngou(List<Store> tngou) {
 			this.tngou = tngou;
 		}
 		
