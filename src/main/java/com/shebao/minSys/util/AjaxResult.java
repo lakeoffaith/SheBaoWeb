@@ -13,6 +13,10 @@ public class AjaxResult {
 		this.data = data;
 		this.total=total;
 	}
+	public AjaxResult(boolean b, Object result) {
+		this.success=b;
+		this.data=result;
+	}
 	public String getMessage() {
 		return message;
 	}

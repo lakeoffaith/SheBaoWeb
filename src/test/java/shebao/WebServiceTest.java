@@ -50,7 +50,8 @@ public class WebServiceTest {
         
 		String code = loginInfoClient.getCodeByCellPhone("123");
 		System.out.println("code:"+code);//6603
-
+		String token = loginInfoClient.loginByPhoneAndCode("123", code);
+		System.out.println(token);
 		
 	}
 		

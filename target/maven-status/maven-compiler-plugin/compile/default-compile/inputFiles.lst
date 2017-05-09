@@ -20,12 +20,14 @@ E:\help\work\sysSheBao\src\main\java\com\shebao\minSys\util\api\DataUtil.java
 E:\help\work\sysSheBao\src\main\java\com\shebao\interceptor\LoginInterceptor.java
 E:\help\work\sysSheBao\src\main\java\com\shebao\controller\LoginController.java
 E:\help\work\sysSheBao\src\main\java\com\shebao\model\Shop.java
+E:\help\work\sysSheBao\src\main\java\com\shebao\mapper\StoreMapper.java
 E:\help\work\sysSheBao\src\main\java\com\shebao\minSys\shiro\security\session\SessionManager.java
 E:\help\work\sysSheBao\src\main\java\com\shebao\mapper\InfoMapper.java
 E:\help\work\sysSheBao\src\main\java\com\shebao\minSys\web\Query.java
 E:\help\work\sysSheBao\src\main\java\com\shebao\model\Info.java
 E:\help\work\sysSheBao\src\main\java\com\shebao\service\impl\EhCacheTestServiceImpl.java
 E:\help\work\sysSheBao\src\main\java\com\shebao\mapper\ShopMapper.java
+E:\help\work\sysSheBao\src\main\java\com\shebao\minSys\util\PathUtil.java
 E:\help\work\sysSheBao\src\main\java\com\shebao\service\EhCacheTestService.java
 E:\help\work\sysSheBao\src\main\java\com\shebao\service\impl\InfoServiceImpl.java
 E:\help\work\sysSheBao\src\main\java\com\shebao\minSys\shiro\security\SystemAuthorizingRealm.java
