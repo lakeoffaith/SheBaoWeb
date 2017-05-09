@@ -1,22 +1,13 @@
 package com.shebao.interceptor;
 
-import java.io.Serializable;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping;
 
 import com.ijoy.service.IUserService;
-import com.ijoy.service.Resource;
-import com.shebao.minSys.IjoyResource;
-import com.shebao.minSys.util.Base64Util;
 import com.shebao.util.CacheUtil;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter  {
@@ -27,13 +18,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter  {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		if(! (handler instanceof HandlerMethod)){
+		//检查头部是否含有token
+		String token = request.getHeader("token");
+		System.out.println(token);
+		/*if(! (handler instanceof HandlerMethod)){
 			return true;
 		}
 		System.out.println(handler instanceof DefaultAnnotationHandlerMapping);
 		HandlerMethod method=(HandlerMethod)handler;
 		IjoyResource ijoyResource = method.getMethodAnnotation(IjoyResource.class);
-		System.out.println(ijoyResource);	
+		System.out.println(ijoyResource);	*/
 		
 		// TODO Auto-generated method stub
 		/*System.out.println("进入handle");

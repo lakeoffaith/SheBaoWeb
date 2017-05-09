@@ -24,5 +24,9 @@ public class Query {
 		return new RowBounds((page-1)*pageSize,pageSize);
 		
 	}
+	@Override
+	public String toString() {
+		return "Query [page=" + page + ", pageSize=" + pageSize + "]";
+	}
 	
 }

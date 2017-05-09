@@ -1,5 +1,7 @@
 package com.shebao.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,22 +24,24 @@ public class LoginController {
 	@RequestMapping(value="/apiLogin/getCodeByPhone",method=RequestMethod.GET)
 	@ResponseBody
 	public AjaxResult getCodeByPhone(String phone){
-		System.out.println("进入");
+		if(phone==null && phone.length()==0)return new AjaxResult(false, "手机不能为空");
 		String code = loginInfoClient.getCodeByCellPhone(phone);
 		return new AjaxResult(true, code);
 	}
 	@RequestMapping(value="/apiLogin/getTokenByPhoneAndCode",method=RequestMethod.GET)
 	@ResponseBody
 	public AjaxResult getTokenByPhoneAndCode(String phone,String code){
+		System.out.println(phone+"^"+code);
 		String result = loginInfoClient.loginByPhoneAndCode(phone, code);
-		
+		System.out.println(result);
 		//不存在
 		return new AjaxResult(true, result);
 	}
 	
-	@RequestMapping(value="/apiLogin/getUserByToken",method=RequestMethod.GET)
+	@RequestMapping(value="/api/getUserByToken",method=RequestMethod.GET)
 	@ResponseBody
-	public AjaxResult getUserByToken(String token){
+	public AjaxResult getUserByToken(HttpServletRequest request){
+		String token=request.getHeader("token");
 		User user = loginInfoClient.checkToken(token);
 		if(user!=null)return new AjaxResult(true, user);
 		return new AjaxResult(false,"无法获取用户");
