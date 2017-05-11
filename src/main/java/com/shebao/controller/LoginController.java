@@ -18,6 +18,7 @@ public class LoginController {
 	@Autowired
 	private ILoginInfoService loginInfoClient;
 	
+	
 	@Autowired
 	private IUserService userWsClient;
 	
