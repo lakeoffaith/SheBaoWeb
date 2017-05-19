@@ -9,7 +9,7 @@
         
         
         <!-- 配置自动扫描的包 -->
-        <context:component-scan base-package="com.shebao.controller"/>
+        <context:component-scan base-package="com.ijoy.common.controller,com.ijoy.shebao.controller"/>
         <mvc:annotation-driven />
        
         <!-- 配置视图解析器 如何把handler 方法返回值解析为实际的物理视图 -->
@@ -22,7 +22,8 @@
 	  	<mvc:mapping path="/**"/>
 	    <mvc:exclude-mapping path="/user/logout"/><!--注销-->
 	    <mvc:exclude-mapping path="/home/"/><!--在home中定义了无须登陆的方法请求，直接过滤拦截-->
-	    <bean class="com.shebao.interceptor.LoginInterceptor"/><!--自定义拦截器注册-->
+	    <mvc:exclude-mapping path="/apiLogin/*"/><!--在home中定义了无须登陆的方法请求，直接过滤拦截-->
+	    <bean class="com.ijoy.common.interceptor.LoginInterceptor"/><!--自定义拦截器注册-->
 	  </mvc:interceptor>
 	  <!-- 我们可以直接在者注册自定义拦截器Bean来配置全局拦截器，会对所有请求拦截-->
 	</mvc:interceptors>

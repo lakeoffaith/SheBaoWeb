@@ -77,10 +77,10 @@
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
 	</bean>
 	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-	    <property name="basePackage" value="com.shebao.mapper"/>
+	    <property name="basePackage" value="com.ijoy.shebao.mapper"/>
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.shebao.mapper"/>
+		<property name="basePackage" value="com.ijoy.shebao.mapper"/>
 		<!-- <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/> -->
 	</bean>
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
