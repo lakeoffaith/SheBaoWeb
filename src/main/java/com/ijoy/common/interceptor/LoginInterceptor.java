@@ -1,7 +1,5 @@
 package com.ijoy.common.interceptor;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,11 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.ijoy.common.util.AjaxResult;
-import com.ijoy.common.util.StringUtils;
 import com.ijoy.service.IjoyCoreService;
-
-import net.sf.json.JSONObject;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter  {
 	@Autowired

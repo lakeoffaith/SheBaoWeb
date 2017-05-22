@@ -1,5 +1,6 @@
 package com.ijoy.shebao.model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -13,7 +14,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Table(name = "info")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Info {
+public class Info implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

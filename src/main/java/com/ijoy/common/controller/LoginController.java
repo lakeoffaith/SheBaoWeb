@@ -1,6 +1,7 @@
 package com.ijoy.common.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +28,7 @@ public class LoginController  extends BaseController{
 	@Autowired
 	private IjoyCoreService ijoyCoreServiceApi;
 	//登录 json
-	
+//	,@RequestBody Map map
 	@RequestMapping(value="/apiLogin/login",method=RequestMethod.POST)
 	@ResponseBody
 	public AjaxResult login(HttpServletRequest request,@RequestBody Map map){
@@ -40,7 +41,7 @@ public class LoginController  extends BaseController{
 		if(StringUtils.isBlank(userName))return new AjaxResult(false,"输入错误");
 		String password=(String) map.get("password");
 		if(StringUtils.isBlank(password))return new AjaxResult(false,"输入错误");
-		String type=(String) map.get("type");
+		String type=String.valueOf(map.get("type"));
 		
 		if(StringUtils.isBlank(type))return new AjaxResult(false,"无效客户端");
 		if(type.equals(String.valueOf(Client_Phone))){
@@ -84,28 +85,18 @@ public class LoginController  extends BaseController{
 	}
 	@RequestMapping(value="/apiLogin/getCodeByPhone",method=RequestMethod.GET)
 	@ResponseBody
-	public AjaxResult getCodeByPhone(String phone){
+	public AjaxResult getCodeByPhone(HttpServletRequest request){
+		String phone=request.getParameter("phone");
 		if(logger.isDebugEnabled()){
 			logger.debug("进入 getCodeByPhone^"+phone);
 		}
-		if(phone==null && phone.length()==0)return new AjaxResult(false, "手机不能为空");
+		if(phone==null || phone.length()==0)return new AjaxResult(false, "手机不能为空");
 		if(!StringUtils.validePhone(phone))return new AjaxResult(false,"手机格式错误");
 		String code = ijoyCoreServiceApi.getCodeByCellPhone(phone);
 		if(code!=null && code.length()>0) return new AjaxResult(true,code);
 		return new AjaxResult(false,"获取验证码失败");
 	}
 	
-	@RequestMapping(value="/api/getUserByToken",method=RequestMethod.GET)
-	@ResponseBody
-	public AjaxResult getUserByToken(HttpServletRequest request){
-		if(logger.isDebugEnabled()){
-			logger.debug("进入 getUserByToken");
-		}
-		String token=request.getHeader("token");
-		User user = ijoyCoreServiceApi.checkToken(token);
-		if(user!=null)return new AjaxResult(true, Arrays.asList(user));
-		return new AjaxResult(false,"无法获取用户");
-	}
 	
 	@RequestMapping(value="/api/getMenuByUser",method=RequestMethod.GET)
 	@ResponseBody
