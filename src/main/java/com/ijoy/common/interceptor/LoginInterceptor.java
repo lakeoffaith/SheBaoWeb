@@ -13,6 +13,8 @@ import com.ijoy.common.util.AjaxResult;
 import com.ijoy.common.util.StringUtils;
 import com.ijoy.service.IjoyCoreService;
 
+import net.sf.json.JSONObject;
+
 public class LoginInterceptor extends HandlerInterceptorAdapter  {
 	@Autowired
 	private IjoyCoreService ijoyCoreServiceApi;
@@ -22,13 +24,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter  {
 		//检查头部是否含有token
 		String token = request.getHeader("token");
 		System.out.println(token);
-		if(StringUtils.isBlank(token)){
-			AjaxResult result=new AjaxResult(false, "权限不足");
+		/*if(StringUtils.isBlank(token)){
+			AjaxResult result=new AjaxResult(false, "请登录");
 			
 			 response.setCharacterEncoding("UTF-8");
 			 response.setContentType("application/json; charset=utf-8"); 
 			 PrintWriter out = response.getWriter();
-		}
+			 out.write(JSONObject.fromObject(result).toString());
+			 return false;
+		}*/
 		/*if(! (handler instanceof HandlerMethod)){
 			return true;
 		}

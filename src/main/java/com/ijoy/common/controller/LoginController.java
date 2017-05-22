@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ijoy.common.util.AjaxResult;
 import com.ijoy.common.util.StringUtils;
-import com.ijoy.common.util.type.ClientType;
 import com.ijoy.service.IjoyCoreService;
 import com.ijoy.service.Resource;
 import com.ijoy.service.User;
@@ -42,16 +41,20 @@ public class LoginController  extends BaseController{
 		String password=(String) map.get("password");
 		if(StringUtils.isBlank(password))return new AjaxResult(false,"输入错误");
 		String type=(String) map.get("type");
+		
 		if(StringUtils.isBlank(type))return new AjaxResult(false,"无效客户端");
 		if(type.equals(String.valueOf(Client_Phone))){
 			token=ijoyCoreServiceApi.loginByPhoneAndCode(userName, password);
-		}else if(type.equals(String.valueOf(ClientType.Web))){
+		}else if(type.equals(String.valueOf(Client_Web))){
 			token=ijoyCoreServiceApi.loginByUserNameAndPassword(userName, password);
 		}else{
 			return new AjaxResult(false,"无效客户端");
 		}
-		if(StringUtils.isBlank(token))return new AjaxResult(false,"登录失败");
-		return new AjaxResult(true, token);
+		if(StringUtils.isBlank(token))return new AjaxResult(false,"用户名和密码错误");
+		User user = ijoyCoreServiceApi.checkToken(token);
+		AjaxResult result= new AjaxResult(true, token);
+		result.setData(Arrays.asList(user));
+		return result;
 	}
 	
 	
