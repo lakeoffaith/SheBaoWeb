@@ -18,7 +18,7 @@ public  abstract class BaseServiceImpl<T> implements BaseService<T> {
 	}
 	protected abstract void setMapper(Mapper<T> mapper);
 
-	@Cacheable(value="common",key="#root.target.getKeyName()+'_list_'+#p0.offset+'_'+#p0.limit")  
+//	@Cacheable(value="common",key="#root.target.getKeyName()+'_list_'+#p0.offset+'_'+#p0.limit")  
 	public List<T> findAll(RowBounds rowBounds) {
 		System.out.println(mapper);
 		return mapper.selectByRowBounds(null, rowBounds);
