@@ -267,7 +267,7 @@
 		        <configuration>
 		        	<encoding>UTF-8</encoding>
 		        	<compilerArguments>
-		        		<extdirs>${basedir}/WebRoot/WEB-INF/lib</extdirs>
+		        		<extdirs>${basedir}/webapp/WEB-INF/lib</extdirs>
 		        	</compilerArguments>
 		        </configuration>
 		       
